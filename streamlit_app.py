@@ -19,7 +19,7 @@ st.divider()
 
 st.markdown("### 🩸 KREW")
 
-st.write("Wybierz parametr i jego stan:")
+st.write("Wybierz parametr i sprawdź jego stan:")
 
 conn = http.client.HTTPSConnection("app.nocodb.com")
 headers = { 'xc-token': "0At1GzBrfpYclyW568ViqVKwYbaOf10vcFo8hnu7" }
@@ -60,6 +60,14 @@ wybor = st.selectbox(
     "Parametr",
     parametr
 )
+
+# # Function to format the text
+# def format_text(text):
+#     if ':' in text:
+#         parts = text.split(':', 1)
+#         return f"**{parts[0]}**: {parts[1]}"
+#     else:
+#         return text
 
 col1, col2 = st.columns(2)
 
