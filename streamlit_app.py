@@ -1,21 +1,9 @@
 import streamlit as st
 import pandas as pd
-
-# config.py
-import os
-from dotenv import load_dotenv
-from config import API_KEY, DATABASE_URL # type: ignore
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Access variables
-API_KEY = os.getenv('NOCODB_API_KEY')
-DATABASE_URL = os.getenv('DATABASE_URL')
-
-# Validation
-if not API_KEY:
-    raise ValueError("NOCODB_API_KEY environment variable is not set")
+import http.client
+from config import API_KEY, HOST, TABLE_ID, VIEW_ID
+from io import StringIO, BytesIO
+import json
 
 st.set_page_config (page_title="Vetnolimits Lab")
 
@@ -24,4 +12,30 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
 
-st.write.dropdown(label="Wybierz parametr:", options=["Diabetes", "Cholesterol", "BMI", "Smoking", "Alcohol", "Obesity", "Blood Pressure", "Heart Disease", "Cancer", "Diabetes", "Cholesterol", "BMI", "Smoking", "Alcohol", "Obesity", "Blood Pressure", "Heart Disease", "Cancer"])
+conn = http.client.HTTPSConnection(HOST)
+
+headers = { 'xc-token': API_KEY }
+
+conn.request("GET", f"/api/v2/tables/{TABLE_ID}/records?offset=0&limit=25&where=&viewId={VIEW_ID}", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+json_str = data.decode("utf-8")
+data = json.loads(json_str)
+df = pd.DataFrame(data['list'])
+
+print(df.columns)
+
+selected_parameter = st.selectbox('Parametr', df.loc[:,'Parametr'].sort_values(), placeholder='Wpisz lub wybierz', index=None)
+selected_parameter = str(selected_parameter)
+
+# st.table(df.loc[df['Parametr'] == selected_parameter])
+
+st.dataframe(df.loc[df['Parametr'] == selected_parameter],
+             column_order=['Obniżony parametr ⬇︎', 'Podwyższony parametr ⬆︎'],
+             use_container_width=True,
+             hide_index=True,
+             on_select='ignore'
+             )
+
+conn.close()
