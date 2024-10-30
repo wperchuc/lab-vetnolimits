@@ -4,7 +4,7 @@ import pandas as pd
 # config.py
 import os
 from dotenv import load_dotenv
-from config import API_KEY, DATABASE_URL
+from config import API_KEY, DATABASE_URL # type: ignore
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,7 +13,7 @@ load_dotenv()
 API_KEY = os.getenv('NOCODB_API_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-# Optional: Add validation
+# Validation
 if not API_KEY:
     raise ValueError("NOCODB_API_KEY environment variable is not set")
 
@@ -24,3 +24,4 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
 
+st.write.dropdown(label="Wybierz parametr:", options=["Diabetes", "Cholesterol", "BMI", "Smoking", "Alcohol", "Obesity", "Blood Pressure", "Heart Disease", "Cancer", "Diabetes", "Cholesterol", "BMI", "Smoking", "Alcohol", "Obesity", "Blood Pressure", "Heart Disease", "Cancer"])
