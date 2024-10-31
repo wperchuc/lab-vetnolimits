@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import http.client
 from config import API_KEY, HOST, TABLE_ID, VIEW_ID
-from io import StringIO, BytesIO
 import json
 
 st.set_page_config (page_title="Vetnolimits Lab")
@@ -12,7 +11,7 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
 
-conn = http.client.HTTPSConnection(HOST)
+conn = http.client.HTTPSConnection("app.nocodb.com")
 
 headers = { 'xc-token': API_KEY }
 
