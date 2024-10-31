@@ -11,7 +11,7 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
 
-conn = http.client.HTTPSConnection("app.nocodb.com")
+conn = http.client.HTTPSConnection(HOST)
 
 headers = { 'xc-token': API_KEY }
 
