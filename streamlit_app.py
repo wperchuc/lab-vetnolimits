@@ -4,7 +4,40 @@ import http.client
 from config import API_KEY, HOST, TABLE_ID, VIEW_ID
 import json
 
-st.set_page_config (page_title="Vetnolimits Lab")
+### START OF DEBUG
+
+from dotenv import load_dotenv
+import os
+
+st.set_page_config (page_title="🔬 Vetnolimits Lab")
+
+# Load environment variables
+load_dotenv()
+
+# Debug: Print all environment variables
+st.write("Checking environment variables:")
+HOST = st.secrets('NOCODB_HOST')
+API_KEY = st.secrets('NOCODB_API_KEY')
+TABLE_ID = st.secrets('NOCODB_TABLE_ID')
+VIEW_ID = st.secrets('NOCODB_VIEW_ID')
+
+st.write({
+    'HOST': HOST,
+    'API_KEY': '***' if API_KEY else None,
+    'TABLE_ID': TABLE_ID,
+    'VIEW_ID': VIEW_ID
+})
+
+# Only proceed if HOST is available
+if HOST:
+    conn = http.client.HTTPSConnection(HOST)
+    headers = {'xc-token': API_KEY}
+    endpoint = f"/api/v2/tables/{TABLE_ID}/records?offset=0&limit=25&where=&viewId={VIEW_ID}"
+    conn.request("GET", endpoint, headers=headers)
+else:
+    st.error("HOST environment variable is not set!")
+
+### END OF DEBUG
 
 st.header("Vetnolimits Lab")
 st.subheader("Twoja pomoc w diagnostyce różnicowej")
