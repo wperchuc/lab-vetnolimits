@@ -47,17 +47,18 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 st.markdown("""
 <style>
 .diagnostic-section {
+    background-color: rgba(248, 249, 250, 0.1);
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
 }
 
 .lowered {
-    background-color: rgba(241, 248, 255, 0.1);
+    background-color: rgba(0, 0, 255, 0.1);
 }
 
 .elevated {
-    background-color: rgba(255, 241, 241, 0.1);
+    background-color: rgba(255, 0, 0, 0.1);
 }
 
 .parameter-header {
