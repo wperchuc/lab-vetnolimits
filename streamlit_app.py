@@ -45,19 +45,22 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 # Add custom CSS for better styling
 st.markdown("""
     <style>
-    .stSelectbox {
-        margin-bottom: 2rem;
-    }
-    .diagnostic-card {
+    .diagnostic-section {
+        background-color: #f8f9fa;
         padding: 1rem;
         border-radius: 8px;
-        margin-bottom: 1rem;
+        margin: 1rem 0;
     }
     .lowered {
-        background-color: #EFF6FF;
+        background-color: #f1f8ff;
     }
     .elevated {
-        background-color: #FEF2F2;
+        background-color: #fff1f1;
+    }
+    .parameter-header {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -91,25 +94,34 @@ st.dataframe(df.loc[df['Parametr'] == selected_parameter],
              )
 
 if selected_parameter:
-    # Get the data for the selected parameter
-    param_data = df.loc[df['Parametr'] == selected_parameter].iloc[0]
+    # Get the data for the selected parameter with error handling
+    filtered_data = df.loc[df['Parametr'] == selected_parameter]
     
-    # Display the headers first
-    st.markdown('### Obniżony parametr ⬇️')
-    # Display lowered parameter content in a styled container
-    st.markdown(f"""
-        <div class="diagnostic-section lowered">
-            {param_data['Obniżony parametr ⬇︎']}
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown('### Podwyższony parametr ⬆️')
-    # Display elevated parameter content in a styled container
-    st.markdown(f"""
-        <div class="diagnostic-section elevated">
-            {param_data['Podwyższony parametr ⬆︎']}
-        </div>
-    """, unsafe_allow_html=True)
+    if not filtered_data.empty:
+        param_data = filtered_data.iloc[0]
+        
+        # Display the headers and content
+        st.markdown('### Obniżony parametr ⬇️')
+        if pd.notna(param_data['Obniżony parametr ⬇︎']):  # Check if value exists
+            st.markdown(f"""
+                <div class="diagnostic-section lowered">
+                    {param_data['Obniżony parametr ⬇︎']}
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.info("Brak danych dla obniżonego parametru.")
+            
+        st.markdown('### Podwyższony parametr ⬆️')
+        if pd.notna(param_data['Podwyższony parametr ⬆︎']):  # Check if value exists
+            st.markdown(f"""
+                <div class="diagnostic-section elevated">
+                    {param_data['Podwyższony parametr ⬆︎']}
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.info("Brak danych dla podwyższonego parametru.")
+    else:
+        st.warning("Nie znaleziono danych dla wybranego parametru.")
 
 
 conn.close()
