@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import http.client
@@ -44,25 +45,51 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 # Add custom CSS for better styling
 st.markdown("""
-    <style>
-    .diagnostic-section {
-        background-color: #f8f9fa;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1rem 0;
-    }
-    .lowered {
-        background-color: #f1f8ff;
-    }
-    .elevated {
-        background-color: #fff1f1;
-    }
-    .parameter-header {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
-    </style>
+<style>
+.diagnostic-section {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Light mode styles */
+[data-theme="light"] .diagnostic-section {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+[data-theme="light"] .lowered {
+    background-color: #f1f8ff;
+    color: #000000;
+}
+
+[data-theme="light"] .elevated {
+    background-color: #fff1f1;
+    color: #000000;
+}
+
+/* Dark mode styles */
+[data-theme="dark"] .diagnostic-section {
+    background-color: #2b3035;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .lowered {
+    background-color: #1a2632;
+    color: #ffffff;
+}
+
+[data-theme="dark"] .elevated {
+    background-color: #32252a;
+    color: #ffffff;
+}
+
+.parameter-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+</style>
 """, unsafe_allow_html=True)
 
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
