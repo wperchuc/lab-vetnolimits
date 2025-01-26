@@ -91,19 +91,25 @@ st.dataframe(df.loc[df['Parametr'] == selected_parameter],
              )
 
 if selected_parameter:
-    # Split the display into two columns
-    col1, col2 = st.columns(2)
+    # Get the data for the selected parameter
+    param_data = df.loc[df['Parametr'] == selected_parameter].iloc[0]
     
-    with col1:
-        st.markdown('<div class="diagnostic-card lowered">', unsafe_allow_html=True)
-        st.subheader('Obniżony parametr ⬇︎')
-        # Display lowered parameter information
-        st.markdown('</div>', unsafe_allow_html=True)
+    # Display the headers first
+    st.markdown('### Obniżony parametr ⬇️')
+    # Display lowered parameter content in a styled container
+    st.markdown(f"""
+        <div class="diagnostic-section lowered">
+            {param_data['Obniżony parametr ⬇︎']}
+        </div>
+    """, unsafe_allow_html=True)
     
-    with col2:
-        st.markdown('<div class="diagnostic-card elevated">', unsafe_allow_html=True)
-        st.subheader('Podwyższony parametr ⬆︎')
-        # Display elevated parameter information
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('### Podwyższony parametr ⬆️')
+    # Display elevated parameter content in a styled container
+    st.markdown(f"""
+        <div class="diagnostic-section elevated">
+            {param_data['Podwyższony parametr ⬆︎']}
+        </div>
+    """, unsafe_allow_html=True)
+
 
 conn.close()
