@@ -47,41 +47,18 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 st.markdown("""
 <style>
 .diagnostic-section {
+    background-color: rgba(248, 249, 250, 0.1);
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
 }
 
-/* Light mode styles */
-[data-theme="light"] .diagnostic-section {
-    background-color: #f8f9fa;
-    color: #000000;
+.lowered {
+    background-color: rgba(241, 248, 255, 0.1);
 }
 
-[data-theme="light"] .lowered {
-    background-color: #f1f8ff;
-    color: #000000;
-}
-
-[data-theme="light"] .elevated {
-    background-color: #fff1f1;
-    color: #000000;
-}
-
-/* Dark mode styles */
-[data-theme="dark"] .diagnostic-section {
-    background-color: #2b3035;
-    color: #ffffff;
-}
-
-[data-theme="dark"] .lowered {
-    background-color: #1a2632;
-    color: #ffffff;
-}
-
-[data-theme="dark"] .elevated {
-    background-color: #32252a;
-    color: #ffffff;
+.elevated {
+    background-color: rgba(255, 241, 241, 0.1);
 }
 
 .parameter-header {

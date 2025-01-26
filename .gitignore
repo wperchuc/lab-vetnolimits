@@ -3,3 +3,6 @@
 .env.local
 .env.*.local
 .streamlit/secrets.toml
+nocodb_converted.json
+nocodb_converted.csv
+nocodb.json
