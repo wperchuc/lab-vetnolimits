@@ -14,19 +14,19 @@ st.set_page_config (page_title="🔬 Vetnolimits Lab")
 # Load environment variables
 load_dotenv()
 
-# Debug: Print all environment variables
-st.write("Checking environment variables:")
-HOST = st.secrets('NOCODB_HOST')
-API_KEY = st.secrets('NOCODB_API_KEY')
-TABLE_ID = st.secrets('NOCODB_TABLE_ID')
-VIEW_ID = st.secrets('NOCODB_VIEW_ID')
+# # Debug: Print all environment variables
+# st.write("Checking environment variables:")
+# HOST = st.secrets('NOCODB_HOST')
+# API_KEY = st.secrets('NOCODB_API_KEY')
+# TABLE_ID = st.secrets('NOCODB_TABLE_ID')
+# VIEW_ID = st.secrets('NOCODB_VIEW_ID')
 
-st.write({
-    'HOST': HOST,
-    'API_KEY': '***' if API_KEY else None,
-    'TABLE_ID': TABLE_ID,
-    'VIEW_ID': VIEW_ID
-})
+# st.write({
+#     'HOST': HOST,
+#     'API_KEY': '***' if API_KEY else None,
+#     'TABLE_ID': TABLE_ID,
+#     'VIEW_ID': VIEW_ID
+# })
 
 # Only proceed if HOST is available
 if HOST:
