@@ -42,6 +42,26 @@ else:
 st.header("Vetnolimits Lab")
 st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
+# Add custom CSS for better styling
+st.markdown("""
+    <style>
+    .stSelectbox {
+        margin-bottom: 2rem;
+    }
+    .diagnostic-card {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    .lowered {
+        background-color: #EFF6FF;
+    }
+    .elevated {
+        background-color: #FEF2F2;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.write("Wybierz parametr i jego stan, aby zobaczyć sugerowane diagnozy.")
 
 conn = http.client.HTTPSConnection(HOST)
@@ -69,5 +89,21 @@ st.dataframe(df.loc[df['Parametr'] == selected_parameter],
              hide_index=True,
              on_select='ignore'
              )
+
+if selected_parameter:
+    # Split the display into two columns
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown('<div class="diagnostic-card lowered">', unsafe_allow_html=True)
+        st.subheader('Obniżony parametr ⬇︎')
+        # Display lowered parameter information
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown('<div class="diagnostic-card elevated">', unsafe_allow_html=True)
+        st.subheader('Podwyższony parametr ⬆︎')
+        # Display elevated parameter information
+        st.markdown('</div>', unsafe_allow_html=True)
 
 conn.close()
