@@ -47,7 +47,6 @@ st.subheader("Twoja pomoc w diagnostyce różnicowej")
 st.markdown("""
 <style>
 .diagnostic-section {
-    background-color: rgba(248, 249, 250, 0.1);
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
