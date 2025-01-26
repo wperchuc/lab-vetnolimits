@@ -75,7 +75,7 @@ conn = http.client.HTTPSConnection(HOST)
 
 headers = { 'xc-token': API_KEY }
 
-conn.request("GET", f"/api/v2/tables/{TABLE_ID}/records?offset=0&limit=25&where=&viewId={VIEW_ID}", headers=headers)
+conn.request("GET", f"/api/v2/tables/{TABLE_ID}/records?offset=0&limit=50&where=&viewId={VIEW_ID}", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
