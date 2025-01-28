@@ -84,7 +84,7 @@ json_str = data.decode("utf-8")
 data = json.loads(json_str)
 df = pd.DataFrame(data['list'])
 
-print(df.columns)
+# print(df.columns)
 
 selected_parameter = st.selectbox('Parametr', df.loc[:,'Parametr'].sort_values(), placeholder='Wpisz lub wybierz', index=None)
 selected_parameter = str(selected_parameter)
