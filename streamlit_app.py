@@ -40,7 +40,7 @@ else:
 
 ### END OF DEBUG
 
-st.image("https://vetnolimits.com/wp-content/uploads/2020/11/vetnolimits_logo__color-m.png", width=200)
+st.image("https://vetnolimits.com/wp-content/uploads/2020/11/vetnolimits_logo__color-m.png", width=100)
 st.header("🔬 Vetnolimits Lab 🩸")
 st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
@@ -91,12 +91,12 @@ selected_parameter = str(selected_parameter)
 
 # st.table(df.loc[df['Parametr'] == selected_parameter])
 
-st.dataframe(df.loc[df['Parametr'] == selected_parameter],
-             column_order=['Obniżony parametr ⬇︎', 'Podwyższony parametr ⬆︎'],
-             use_container_width=True,
-             hide_index=True,
-             on_select='ignore'
-             )
+# st.dataframe(df.loc[df['Parametr'] == selected_parameter],
+#              column_order=['Obniżony parametr ⬇︎', 'Podwyższony parametr ⬆︎'],
+#              use_container_width=True,
+#              hide_index=True,
+#              on_select='ignore'
+#              )
 
 if selected_parameter:
     # Get the data for the selected parameter with error handling
