@@ -106,7 +106,7 @@ if selected_parameter:
         param_data = filtered_data.iloc[0]
         
         # Display the headers and content
-        st.markdown('### Obniżony parametr ⬇️')
+        st.markdown(f'###{selected_parameter} Obniżony parametr ⬇️')
         if pd.notna(param_data['Obniżony parametr ⬇︎']):  # Check if value exists
             st.markdown(f"""
                 <div class="diagnostic-section lowered">
@@ -116,7 +116,7 @@ if selected_parameter:
         else:
             st.info("Brak danych dla obniżonego parametru.")
             
-        st.markdown('### Podwyższony parametr ⬆️')
+        st.markdown(f'###{selected_parameter} - Podwyższony parametr ⬆️')
         if pd.notna(param_data['Podwyższony parametr ⬆︎']):  # Check if value exists
             st.markdown(f"""
                 <div class="diagnostic-section elevated">
