@@ -4,10 +4,10 @@ import pandas as pd
 import http.client
 from config import API_KEY, HOST, TABLE_ID, VIEW_ID
 import json
-import streamlit_analytics
+# import streamlit_analytics
 
-with streamlit_analytics.track():
-    st.selectbox('Parametr')
+# with streamlit_analytics.track():
+#     st.selectbox('Parametr')
 
 ### START OF DEBUG
 
