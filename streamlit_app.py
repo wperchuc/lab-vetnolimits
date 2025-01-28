@@ -40,7 +40,8 @@ else:
 
 ### END OF DEBUG
 
-st.header("Vetnolimits Lab")
+st.image("https://vetnolimits.com/wp-content/uploads/2020/11/vetnolimits_logo__color-m.png", width=200)
+st.header("🔬 Vetnolimits Lab 🩸")
 st.subheader("Twoja pomoc w diagnostyce różnicowej")
 
 # Add custom CSS for better styling
